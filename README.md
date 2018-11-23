@@ -1,4 +1,5 @@
-# sa_learn_from_imap
+# sa_learn_from_imap.py
+
 Train spamassassin from an IMAP mailbox
 
 ## CLONE THE REPO
@@ -56,4 +57,4 @@ SHELL=/bin/bash
 
 more error handling...
 
-![cat typing](https://media.giphy.com/media/JIX9t2j0ZTN9S/giphy.gif)
+![cat typing](https://i.imgur.com/U47uVtE.gif)
