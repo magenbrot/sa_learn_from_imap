@@ -26,6 +26,8 @@ pip install -r requirements.txt
 
 ## USAGE
 
+_Hint_: mymailbox.org and the password are just examples.
+
 First up you'll need an IMAP mailbox where you and your customers redirect SPAM and HAM to. I've a mailbox called 
 filter@mymails.org. Since I use postfix (I don't know what other MTAs do), I can use a + in my recipient address. So 
 I'm forwarding all spam to filter+spam@mymailbox.org and all ham to filter+ham@mymailbox.org.
