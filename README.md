@@ -26,7 +26,14 @@ pip install -r requirements.txt
 
 ## USAGE
 
-The script has 3 required, positional arguments. The IMAP-host, -user and the -password. By default it assumes that 
+First up you'll need an IMAP mailbox where you and your customers redirect SPAM and HAM to. I've a mailbox called 
+filter@mymails.org. Since I use postfix (I don't know what other MTAs do), I can use a + in my recipient address. So 
+I'm forwarding all spam to filter+spam@mymailbox.org and all ham to filter+ham@mymailbox.org.
+
+On my server I've a sieve-script running which will move the incoming mails by the recipient to the correct folder (See 
+the provided [example](sieve-filter.txt)).
+
+Now about training the SpamAssassin: The script has 3 required, positional arguments. The IMAP-host, -user and the -password. By default it assumes that 
 your SPAM mails are sorted in a folder called 'spam' and your HAM mails are filed in 'ham'.
 
 This can be changed with the parameters ```--spam-folder``` and ```--ham-folder```. It needs a working directory, this 
@@ -58,3 +65,7 @@ SHELL=/bin/bash
 more error handling...
 
 ![cat typing](https://i.imgur.com/U47uVtE.gif)
+
+## LICENSE
+
+[see here](LICENSE)

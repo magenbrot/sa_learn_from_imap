@@ -1,0 +1,11 @@
+require ["fileinto", "regex", "date", "relational", "vacation", "imap4flags", "copy"];
+
+if header :contains "Received" "+spam" {
+  fileinto "spam";
+  stop;
+} elsif header :contains "Received" "+ham" {
+  fileinto "ham";
+  stop;
+}
+
+keep;
