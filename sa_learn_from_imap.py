@@ -49,7 +49,7 @@ def process_mailbox(mail, folder, directory):
         mail_file = tempfile.NamedTemporaryFile(dir=directory + folder + '/', delete=False)
         mail_file.write(data[0][1])
         mail_file.close()
-        #mail.store(emailid, '+FLAGS', '\\Deleted')
+        mail.store(emailid, '+FLAGS', '\\Deleted')
 
 
 def main():
