@@ -45,7 +45,7 @@ is ```/tmp/sa-learn``` by default and can be changed with the ```--directory``` 
 sa-learn script it should use with ```--sa-learn```. This defaults to ```/usr/bin/sa-learn```.
 
 Please call the script with the user you're running SpamAssassin with. In my case it's ```root``` (I'm using the 
-Proxmox Mail Gateway).
+[Proxmox Mail Gateway](https://www.proxmox.com/en/proxmox-mail-gateway)).
 
 Example (run with python3, either directly or in the venv from above):
 ```bash
