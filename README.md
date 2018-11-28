@@ -31,7 +31,7 @@ _Hint_: mymailbox.org and the password are just examples.
 First up you'll need an IMAP mailbox where you and your customers redirect SPAM and HAM to. I've a mailbox called 
 filter@mymails.org. Since I use postfix (I don't know what other MTAs do), I can use a + in my recipient address (see 
 [recipient_delimiter](http://www.postfix.org/postconf.5.html#recipient_delimiter) documentation of Postfix). So 
-I'm forwarding all spam to filter+spam@mymailbox.org and all ham to filter+ham@mymailbox.org.
+I'm redirecting all spam to filter+spam@mymailbox.org and all ham to filter+ham@mymailbox.org. I'm using the thunderbird plugin ["Mail Redirect"](https://addons.thunderbird.net/de/thunderbird/addon/mailredirect/) for this.
 
 Furthermore I have a sieve-script running on my server, which will move the incoming mails by the recipient to the 
 correct folder (see the provided [example](sieve-filter.txt)).
