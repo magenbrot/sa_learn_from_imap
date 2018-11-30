@@ -13,7 +13,7 @@ git clone https://github.com/magenbrot/sa_learn_from_imap.git
 
 Debian OS:
 
-Setup virtualenv and install required modules.
+Optional: Setup virtualenv, it should also run without that.
 
 ```bash
 sudo apt install build-essential curl python3-venv
@@ -21,7 +21,6 @@ sudo apt install build-essential curl python3-venv
 cd sa_learn_from_imap
 python3 -m venv env/python3
 source env/python3/bin/activate
-pip install -r requirements.txt
 ```
 
 ## USAGE
