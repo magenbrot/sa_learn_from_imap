@@ -89,6 +89,7 @@ def main():
                 os.system(args.sa_learn + " --spam" + " " + args.directory + 'spam')
     else:
         print("ERROR: Unable to open mailbox '" + args.spam_folder + "': ", resp)
+    mail.expunge()
 
     # Process Ham
     os.makedirs(args.directory + 'ham', exist_ok=True)
@@ -101,12 +102,10 @@ def main():
                 os.system(args.sa_learn + " --ham" + " " + args.directory + 'ham')
     else:
         print("ERROR: Unable to open mailbox '" + args.ham_folder + "': ", resp)
-
     mail.expunge()
+    
     mail.close()
     mail.logout()
     rmtree(args.directory)
-
-
 if __name__ == "__main__":
     main()
