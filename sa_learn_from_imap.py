@@ -8,19 +8,13 @@ Train spamassassins bayes filter with mails fetched from an IMAP account
 
 """
 
-from __future__ import print_function
 from shutil import rmtree
 import os
 import sys
-
-try:
-    import imaplib
-    import argparse
-    import tempfile
-
-except ImportError as error:
-    print("Missing python module: {}".format(error))
-    sys.exit(255)
+import subprocess
+import imaplib
+import argparse
+import tempfile
 
 __author__ = "Oliver Völker"
 __contact__ = "info@ovtec.it"
@@ -46,7 +40,7 @@ def process_mailbox(mail, folder, directory):
             return
         print("Got a message", emailid)
 
-        mail_file = tempfile.NamedTemporaryFile(dir=directory + folder + '/', delete=False)
+        mail_file = tempfile.NamedTemporaryFile(dir=os.path.join(directory, folder, ''), delete=False)
         mail_file.write(data[0][1])
         mail_file.close()
         mail.store(emailid, '+FLAGS', '\\Deleted')
@@ -79,27 +73,27 @@ def main():
     mail.login(args.user, args.password)
 
     # Process Spam
-    os.makedirs(args.directory + 'spam', exist_ok=True)
+    os.makedirs(os.path.join(args.directory, 'spam'), exist_ok=True)
     resp, _dummy = mail.select(args.spam_folder)
     if resp == 'OK':
         print("Processing mail folder: ", args.spam_folder)
         process_mailbox(mail, 'spam', args.directory)
-        for _dummy, _dummy, files in os.walk(args.directory + 'spam'):
+        for _dummy, _dummy, files in os.walk(os.path.join(args.directory, 'spam')):
             if files:
-                os.system(args.sa_learn + " --spam" + " " + args.directory + 'spam')
+                subprocess.run([args.sa_learn, '--spam', os.path.join(args.directory, 'spam')], check=True)
     else:
         print("ERROR: Unable to open mailbox '" + args.spam_folder + "': ", resp)
     mail.expunge()
 
     # Process Ham
-    os.makedirs(args.directory + 'ham', exist_ok=True)
+    os.makedirs(os.path.join(args.directory, 'ham'), exist_ok=True)
     resp, _dummy = mail.select(args.ham_folder)
     if resp == 'OK':
         print("Processing mail folder: ", args.ham_folder)
         process_mailbox(mail, 'ham', args.directory)
-        for _dummy, _dummy, files in os.walk(args.directory + 'ham'):
+        for _dummy, _dummy, files in os.walk(os.path.join(args.directory, 'ham')):
             if files:
-                os.system(args.sa_learn + " --ham" + " " + args.directory + 'ham')
+                subprocess.run([args.sa_learn, '--ham', os.path.join(args.directory, 'ham')], check=True)
     else:
         print("ERROR: Unable to open mailbox '" + args.ham_folder + "': ", resp)
     mail.expunge()
